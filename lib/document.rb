@@ -1,8 +1,9 @@
 class Document
-  attr_reader :lines
+  attr_reader :lines, :words
 
   def initialize
     @lines = []
+    @words = {}
   end
 
   def line_count
@@ -15,15 +16,14 @@ class Document
 
   def add_words(set)
     lines.push(set)
+    line_number = lines.count - 1
+    set.each do |word|
+      words[word] = [] unless words[word]
+      words[word].push(line_number)
+    end
   end
 
   def find_locations_for(word)
-    results = []
-    lines.each.with_index do |line, index|
-      if line.include?(word)
-        results << index
-      end
-    end
-    results
+    words[word]
   end
 end

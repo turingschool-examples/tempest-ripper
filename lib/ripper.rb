@@ -7,7 +7,6 @@ class Ripper
   end
 
   def parse_file(target)
-
     file = File.open(target)
     doc = Document.new
     file.each_line do |line|
