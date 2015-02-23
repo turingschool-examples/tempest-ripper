@@ -1,4 +1,5 @@
 require 'pry'
+require './lib/document'
 
 class Ripper
   def parse_line(data)
@@ -16,25 +17,5 @@ class Ripper
       end
     end
     doc
-  end
-end
-
-class Document
-  attr_reader :lines
-
-  def initialize
-    @lines = []
-  end
-
-  def line_count
-    lines.count
-  end
-
-  def line(number)
-    lines.at(number)
-  end
-
-  def add_words(set)
-    lines.push(set)
   end
 end

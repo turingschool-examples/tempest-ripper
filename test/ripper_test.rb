@@ -49,13 +49,10 @@ class RipperTest < Minitest::Test
     assert words.include?("boatswain")
   end
 
-  # THE TEMPEST.
-  #
-  # ACT I.
-  #
-  # SCENE I. _On a ship at sea: a tempestuous noise of thunder
-  # and lightning heard._
-  #
-  # _Enter _a Ship-Master_ and _a Boatswain_._
-  #
+  def test_it_finds_the_line_numbers_for_a_given_word
+    ripper = Ripper.new
+    document = ripper.parse_file('./test/fixtures/micro_tempest.txt')
+    locations = document.find_locations_for("ship")
+    assert_equal [2, 4], locations
+  end
 end
