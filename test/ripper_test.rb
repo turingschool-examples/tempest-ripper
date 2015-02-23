@@ -9,4 +9,20 @@ class RipperTest < Minitest::Test
     words = ripper.parse_line("My spirits, as in a dream, are all bound up.")
     assert_equal 10, words.count
   end
+
+  def test_parsing_downcases_words
+    ripper = Ripper.new
+    words = ripper.parse_line("My spirits, as in a dream, are all bound up.")
+    assert words.include?("my")
+    refute words.include?("My")
+  end
+
+  def test_parsing_removes_puncuation
+    ripper = Ripper.new
+    words = ripper.parse_line("My spirits, as in a dream, are all bound up.")
+    assert words.include?("spirits")
+    refute words.include?("spirits,")
+    assert words.include?("up")
+    refute words.include?("up.")
+  end
 end

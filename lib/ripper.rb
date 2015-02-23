@@ -1,5 +1,5 @@
 class Ripper
   def parse_line(data)
-    data.split
+    data.downcase.scan(/\w+/)
   end
 end
