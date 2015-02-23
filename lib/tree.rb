@@ -12,7 +12,7 @@ class Tree
   end
 
   def find(word)
-    return nil unless head
+    return [] unless head
     head.find(word)
   end
 end
